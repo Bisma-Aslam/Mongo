@@ -2,12 +2,13 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const {
-  createPlayer,
-  getAllPlayer,
-  deletePlayer,
-  updatePlayer,
-  getPlayerById,
+  createBook,
+  getAllBooks,
+  deleteBook,
+  updateBook,
+  getBookById,
 } = require("./operations");
+
 app.use(express.json());
 
 mongoose
@@ -23,61 +24,57 @@ mongoose
     console.log(err);
   });
 
-app.post("/players", async (req, res) => {
+app.post("/books", async (req, res) => {
   try {
-    const { Name, scores } = req.body;
-    const newPlayer = await createPlayer(Name, scores);
-    res.json(newPlayer);
+    const { title, author, genre } = req.body;
+    const newBook = await createBook(title, author, genre);
+    res.json(newBook);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-
-app.get("/players", async (req, res) => {
+app.get("/books", async (req, res) => {
   try {
-    const allPlayers = await getAllPlayer();
-    res.json(allPlayers);
+    const allBooks = await getAllBooks();
+    res.json(allBooks);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-
-app.get("/players/:id", async (req, res) => {
+app.get("/books/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const player = await getPlayerById(id);
-    res.json(player);
+    const book = await getBookById(id);
+    res.json(book);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-
-app.put("/players/:id", async (req, res) => {
+app.put("/books/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { Name, scores } = req.body;
-    const updatedPlayer = await updatePlayer(id, Name, scores);
-    res.json(updatedPlayer);
+    const { title, author, genre } = req.body;
+    const updatedBook = await updateBook(id, title, author, genre);
+    res.json(updatedBook);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-
-app.delete("/players/:id", async (req, res) => {
+app.delete("/books/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedPlayer = await deletePlayer(id);
-    res.json(deletedPlayer);
+    const deletedBook = await deleteBook(id);
+    res.json(deletedBook);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-const PORT = 3006;
+const PORT = 8000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

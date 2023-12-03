@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 
-const playerSchema = mongoose.Schema({
-  Name: String,
-  scores: Number,
+const bookSchema = mongoose.Schema({
+  title: String,
+  author: String,
+  genre: String,
   slug: {
     type: String,
     lowercase: true,
   },
 });
-const PlayerModel = mongoose.model("Player", playerSchema);
-module.exports = PlayerModel;
+
+const BookModel = mongoose.model("Book", bookSchema);
+module.exports = BookModel;

@@ -1,0 +1,15 @@
+{
+  "name": "mango",
+  "version": "1.0.0",
+  "description": "The Express.js connets to MangoDB,provides Restful API endpoints for CRUD operations on a book collection and uses Mangoose for schema definition and database interation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://githun.com/Bisma-Aslam/Mongo.git"
+  },
+  "author": "Bisma-Aslam",
+  "license": "ISC"
+}

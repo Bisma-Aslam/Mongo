@@ -1,33 +1,41 @@
-const PlayerModel = require("./models/model");
-const createPlayer = async (Name, scores) => {
-  console.log("Create Product");
-  let players = new PlayerModel();
-  players.Name = Name;
-  players.scores = scores;
-  await players.save();
-  return players;
+const BookModel = require("./models/model");
+
+const createBook = async (title, author, genre) => {
+  console.log("Create Book");
+  let book = new BookModel();
+  book.title = title;
+  book.author = author;
+  book.genre = genre;
+  await book.save();
+  return book;
 };
-const updatePlayer = async (_id, Name,scores) => {
-  let players = await PlayerModel.findById(_id);
-  players.Name = Name;
-  players.scores = scores;
-  await players.save();
-  return players;
+
+const updateBook = async (_id, title, author, genre) => {
+  let book = await BookModel.findById(_id);
+  book.title = title;
+  book.author = author;
+  book.genre = genre;
+  await book.save();
+  return book;
 };
-const getAllPlayer = async () => {
-  let players = await PlayerModel.find();
-  return players;
+
+const getAllBooks = async () => {
+  let books = await BookModel.find();
+  return books;
 };
-const deletePlayer = async (_id) => {
-  let players = await PlayerModel.findByIdAndDelete(_id);
-  return players;
+
+const deleteBook = async (_id) => {
+  let book = await BookModel.findByIdAndDelete(_id);
+  return book;
 };
-const getPlayerById = async (_id) => {
-  let players = await PlayerModel.findById(_id);
-  return players;
+
+const getBookById = async (_id) => {
+  let book = await BookModel.findById(_id);
+  return book;
 };
-module.exports.createPlayer = createPlayer;
-module.exports.getAllPlayer = getAllPlayer;
-module.exports.deletePlayer = deletePlayer;
-module.exports.updatePlayer = updatePlayer;
-module.exports.getPlayerById = getPlayerById;
+
+module.exports.createBook = createBook;
+module.exports.getAllBooks = getAllBooks;
+module.exports.deleteBook = deleteBook;
+module.exports.updateBook = updateBook;
+module.exports.getBookById = getBookById;
