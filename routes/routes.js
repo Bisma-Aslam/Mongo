@@ -37,8 +37,8 @@ router.post('/books', async (req, res) => {
     }
 });
 
-// Update a book by ID
-router.patch('/books/:id', async (req, res) => {
+
+router.put('/books/:id', async (req, res) => {
     try {
         const updatedBook = await BookModel.updateOne(
             { _id: req.params.id },
@@ -54,6 +54,7 @@ router.patch('/books/:id', async (req, res) => {
         res.status(404).json({ message: err });
     }
 });
+
 
 //delete
 router.delete('/books/:id', async (req, res) => {
