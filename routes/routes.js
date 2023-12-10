@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const BookModel = require('../models/bookModel'); 
 
-// Get all books
+
 router.get('/books', async (req, res) => {
     try {
         const books = await BookModel.find();
@@ -63,7 +63,7 @@ router.patch('/books/:id', async (req, res) => {
     }
 });
 
-// Delete a book by ID
+
 router.delete('/books/:id', async (req, res) => {
     try {
         const removedBook = await BookModel.deleteOne({ _id: req.params.id });

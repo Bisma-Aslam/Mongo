@@ -19,11 +19,11 @@ mongoose.connect(mongoString, { useNewUrlParser: true, useUnifiedTopology: true 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use('/api', bookRouter); // Adjust the route path to match your desired structure
+app.use('/api', bookRouter); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Select an available port
+
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log("Server started at port " + port + "");
