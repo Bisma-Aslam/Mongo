@@ -1,32 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const Model = require('../models/model');
+const BookModel = require('../models/bookModel'); // Assuming the model is for books
 
-router.get('/movies', async(req, res) => {
+// Get all books
+router.get('/books', async (req, res) => {
     try {
-        const movies = await Model.find();
-        res.json(movies);
+        const books = await BookModel.find();
+        res.json(books);
+    } catch (err) {
+        res.status(404).json({ message: err });
     }
-    catch(err) {
-        res.json({ message: err }).status(404);
-    }
-}
-);
+});
 
-router.get('/movies/:id', async(req, res) => {
+// Get a specific book by ID
+router.get('/books/:id', async (req, res) => {
     try {
-        const movie = await Model.findById(req.params.id);
-        res.json(movie);
+        const book = await BookModel.findById(req.params.id);
+        res.json(book);
+    } catch (err) {
+        res.status(404).json({ message: err });
     }
-    catch(err) {
-        res.json({ message: err }).status(404);
-    }
-}
-);
+});
 
-router.post('/movies', async(req, res) => {
-    
-    const movie = new Model({
+// Create a new book
+router.post('/books', async (req, res) => {
+    const book = new BookModel({
         name: req.body.name,
         genre: req.body.genre,
         producer: req.body.producer,
@@ -34,39 +32,45 @@ router.post('/movies', async(req, res) => {
         rating: req.body.rating,
         poster: req.body.poster,
     });
-    try {
-        const savedMovie = await movie.save();
-        res.json(savedMovie);
-    }
-    catch(err) {
-        res.json({ message: err }).status(404);
-    }
-}
-);
 
-router.patch('/movies/:id', async(req, res) => {
     try {
-        const updatedMovie = await Model.updateOne(
+        const savedBook = await book.save();
+        res.json(savedBook);
+    } catch (err) {
+        res.status(404).json({ message: err });
+    }
+});
+
+// Update a book by ID
+router.patch('/books/:id', async (req, res) => {
+    try {
+        const updatedBook = await BookModel.updateOne(
             { _id: req.params.id },
-            { $set: { name: req.body.name, genre: req.body.genre, producer: req.body.producer, year: req.body.year, rating: req.body.rating, poster: req.body.poster } }
+            {
+                $set: {
+                    name: req.body.name,
+                    genre: req.body.genre,
+                    producer: req.body.producer,
+                    year: req.body.year,
+                    rating: req.body.rating,
+                    poster: req.body.poster,
+                },
+            }
         );
-        res.json(updatedMovie);
+        res.json(updatedBook);
+    } catch (err) {
+        res.status(404).json({ message: err });
     }
-    catch(err) {
-        res.json({ message: err }).status(404);
-    }
-}
-);
+});
 
-router.delete('/movies/:id', async(req, res) => {
+// Delete a book by ID
+router.delete('/books/:id', async (req, res) => {
     try {
-        const removedMovie = await Model.deleteOne({ _id: req.params.id });
-        res.json(removedMovie);
+        const removedBook = await BookModel.deleteOne({ _id: req.params.id });
+        res.json(removedBook);
+    } catch (err) {
+        res.status(404).json({ message: err });
     }
-    catch(err) {
-        res.json({ message: err }).status(404);
-    }
-}
-);
+});
 
 module.exports = router;
