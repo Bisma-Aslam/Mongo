@@ -25,12 +25,8 @@ router.get('/books/:id', async (req, res) => {
 // Create a new book
 router.post('/books', async (req, res) => {
     const book = new BookModel({
-        name: req.body.name,
-        genre: req.body.genre,
-        producer: req.body.producer,
-        year: req.body.year,
-        rating: req.body.rating,
-        poster: req.body.poster,
+        title: req.body.title,
+        author: req.body.author,
     });
 
     try {
@@ -48,12 +44,8 @@ router.patch('/books/:id', async (req, res) => {
             { _id: req.params.id },
             {
                 $set: {
-                    name: req.body.name,
-                    genre: req.body.genre,
-                    producer: req.body.producer,
-                    year: req.body.year,
-                    rating: req.body.rating,
-                    poster: req.body.poster,
+                    title: req.body.title,
+                    author: req.body.author,
                 },
             }
         );
