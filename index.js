@@ -2,7 +2,7 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
-const bookRouter = require('./routes/bookRoutes'); 
+const router = require('./routes/routes'); 
 const bodyParser = require('body-parser');
 
 const mongoString = process.env.CONNURL;
@@ -19,7 +19,7 @@ mongoose.connect(mongoString, { useNewUrlParser: true, useUnifiedTopology: true 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use('/api', bookRouter); 
+app.use('/api', router); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
