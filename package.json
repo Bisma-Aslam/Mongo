@@ -11,5 +11,9 @@
     "url": "https://githun.com/Bisma-Aslam/Mongo.git"
   },
   "author": "Bisma-Aslam",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.2"
+  }
 }
